@@ -31,7 +31,6 @@ fs.readFile('./Day1/input.txt', (err, data) => {
 interface Count{
     [key:number]:number
 }
-const count:Count ={}
 
 fs.readFile('./Day1/input.txt', (err, data) => {
     // data contains all the files' data
@@ -48,6 +47,9 @@ fs.readFile('./Day1/input.txt', (err, data) => {
         let b = Number(row[1]);
         list1.push(a); list2.push(b);
     }
+
+    const count:Count ={}
+
     list2.forEach(key => {
         // 0 if undefined
         count[key] = (count[key] || 0) + 1;
