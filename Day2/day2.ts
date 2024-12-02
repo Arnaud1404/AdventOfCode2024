@@ -45,11 +45,12 @@ function check_report_with_dampener(report:string):boolean{
     return false
 }
 // Part 2
+
 fs.readFile('./Day2/input.txt', (err, data) => {
     let result2 = 0;
     if (err) throw err;
     const reports = data.toString().split('\n');
-    // forEach instead of map since don't modify the reports array
+    // forEach instead of map since we don't modify the reports array
     reports.forEach(report => {
         if (check_report_with_dampener(report)) result2++;
     });

@@ -38,7 +38,7 @@ fs.readFile('./Day1/input.txt', (err, data) => {
     if (err) throw err;
     const nums = data.toString().split('\n');
 
-    console.log(nums);
+    // console.log(nums);
     const n = nums.length;
     const list1: number[] = [];
     const list2: number[] = [];
