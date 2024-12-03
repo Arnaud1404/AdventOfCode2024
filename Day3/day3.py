@@ -4,10 +4,10 @@
 # Returns the result between the start and end index
 def eval(data:str, start:int, end:int) -> int:
     assert start < end
-    assert end <= len(data)
+    assert end <len(data)
     i = start
     result = 0
-    while i < len(data) and i < end:
+    while i < len(data) and i < end: 
         i = data.find('mul(', i)
         # No more mul( from i onwards
         if i == -1 or i >= end:
@@ -35,7 +35,7 @@ def eval(data:str, start:int, end:int) -> int:
 with open("input.txt", 'r') as f:
     data:str = f.read()
     # index = Reading head
-    result1 = eval(data, 0, len(data)) 
+    result1 = eval(data, 0, len(data)-1) 
     print(result1) # 174960292
 
     enabled = True
@@ -52,15 +52,10 @@ with open("input.txt", 'r') as f:
             if enabled:
                 result2 += eval(data, index, end)
             enabled = not enabled
-        else: #EOF
+        else: # No instrcution found
             end = len(data) - 1
             if enabled:
-                result2 += eval(data, index, len(data))
+                result2 += eval(data, index, end)
         # Update index
-        index = end
+        index = end + 1
     print(result2) #56275602
-
-    
-
-# Part 2
-
