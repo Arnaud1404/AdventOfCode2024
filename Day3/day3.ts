@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 
 function isInteger(value:string){
-    // true if value is indeed an integer, i.e. is not NaN when parsed as Int
+    // true if value is indeed an integer
     return Number.isInteger(Number(value))
 }
 
