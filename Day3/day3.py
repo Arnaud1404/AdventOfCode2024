@@ -10,31 +10,31 @@ def eval(data:str, start:int, end:int) -> int:
     while i < len(data) and i < end:
         i = data.find('mul(', i)
         # No more mul( from i onwards
-        if i == -1:
+        if i == -1 or i >= end:
             break
         i = i + 4
         num_length = 0
         arg1:str = ""
         arg2:str = ""
-        while data[i].isnumeric() and num_length <= 3:
+        while i < end and data[i].isnumeric() and num_length <= 3:
             arg1 += data[i]
             i += 1
             num_length += 1
-        if data[i] == ",":
+        if i < end and data[i] == ",":
             i += 1
             num_length = 0
-            while data[i].isnumeric() and num_length <= 3:
+            while i < end and data[i].isnumeric() and num_length <= 3:
                 arg2 += data[i]
                 i += 1
                 num_length += 1
-        if data[i] == ")":
+        if i < end and data[i] == ")":
             result += int(arg1) * int(arg2)
         i += 1
     return result 
 
-with open("example.txt", 'r') as f:
+with open("input.txt", 'r') as f:
     data:str = f.read()
-    # i = Reading head
+    # index = Reading head
     result1 = eval(data, 0, len(data)) 
     print(result1) # 174960292
 
@@ -42,27 +42,23 @@ with open("example.txt", 'r') as f:
     index = 0
     result2 = 0
     end = len(data) - 1
-    while index < len(data):
+    while index < len(data) - 1:
         if enabled:
-            end = data.find("don't()", index) + len("don't()")
+            end = data.find("don't()", index) 
         else:
-            end = data.find("do()", index)+ len("do()")
+            end = data.find("do()", index) 
         if end != -1:
             # found an instruction
             if enabled:
                 result2 += eval(data, index, end)
             enabled = not enabled
-            
         else: #EOF
+            end = len(data) - 1
             if enabled:
                 result2 += eval(data, index, len(data))
-            end = len(data) - 1
         # Update index
-        if enabled:
-            index = end 
-        else:
-            i = end 
-    print(result2)
+        index = end
+    print(result2) #56275602
 
     
 
