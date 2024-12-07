@@ -75,7 +75,8 @@ def move(data, width, height):
                 r, c = newr, newc
         moves += 1
         (nextPosition, newr, newc) = get_next_position(direction, data, r, c, width, height)
-    return visited
+    # Add one for the last tile
+    return visited+1
         
 with open("input.txt") as f:
     data = f.read().split("\n")
@@ -87,7 +88,6 @@ with open("input.txt") as f:
     # Smart copy thanks Google
     temp_data = [row[:] for row in data]
     visited = move(temp_data, width, height)
-    visited += 1
     print(f"Part 1 answer: {visited}")
     # Part 2
     # Test each valid obstacle location and see how many loops we get
