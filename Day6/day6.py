@@ -80,26 +80,26 @@ def move(data, width, height):
 with open("input.txt") as f:
     data = f.read().split("\n")
     data = [list(line) for line in data]
-    data_copy = copy.deepcopy(data)
     width = len(data[0])
     height = len(data)
     # Part 1
     # We add one since it doesn't count the last tile
-    visited = move(data, width, height)
+    # Smart copy thanks Google
+    temp_data = [row[:] for row in data]
+    visited = move(temp_data, width, height)
     visited += 1
     print(f"Part 1 answer: {visited}")
     # Part 2
     # Test each valid obstacle location and see how many loops we get
-    # Deepcopy is EXTREMELY SLOW AAAAAAAAAAAAA
     # Time complexity is O(n**2) * O(n**2) = O(n**4) where n is 130, have fun
     result = 0
     for r in range(height):
         for c in range(width):
-            if data_copy[r][c] != ".":
-                continue
-            data = copy.deepcopy(data_copy)
-            data[r][c] = "O"
-            if move(data, width, height) == -1:
+            if data[r][c] != ".":
+                continue 
+            temp_data = [row[:] for row in data]
+            temp_data[r][c] = "O"
+            if move(temp_data, width, height) == -1:
                 result += 1
                 print(f"\rConfig {r*width+c} / {width*height} is valid", end="")
     print(f"\nPart 2 answer: {result}")
