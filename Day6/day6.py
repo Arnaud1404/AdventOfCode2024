@@ -91,7 +91,7 @@ with open("input.txt") as f:
     # Part 2
     # Test each valid obstacle location and see how many loops we get
     # Deepcopy is EXTREMELY SLOW AAAAAAAAAAAAA
-    # Time complexity is O(n**2) * O(n**2) = O(n**4)
+    # Time complexity is O(n**2) * O(n**2) = O(n**4) where n is 130, have fun
     result = 0
     for r in range(height):
         for c in range(width):
