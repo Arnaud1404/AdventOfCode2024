@@ -130,4 +130,4 @@ with open("input.txt", 'r') as f:
 
     print(result) #2401
     result2 = check_mas_square(rows)
-    print(result2)
+    print(result2) #1822
