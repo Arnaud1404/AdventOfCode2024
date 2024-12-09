@@ -3,7 +3,7 @@ def offset(coord1, coord2):
     x2, y2 = coord2
     return (x1-x2, y1-y2)
 
-with open("example.txt") as f:
+with open("input.txt") as f:
     data = f.read().split()
     data = [list(line) for line in data]
     n = len(data) # Always a square matrix
